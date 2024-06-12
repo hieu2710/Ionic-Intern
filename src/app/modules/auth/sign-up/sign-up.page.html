@@ -13,7 +13,7 @@
   <ion-grid>
     <ion-row>
       <!-- <ion-col size="2"></ion-col> -->
-      <ion-col >
+      <ion-col>
         <div class="section-text">
           <div class="text-top-sign-up">
             <p class="text-sign-up-to ">Sign Up to </p>
@@ -30,8 +30,8 @@
           </ion-grid>
         </div>
       </ion-col>
-      <ion-col >
-        <div >
+      <ion-col>
+        <div>
           <div class="top-form-sign-up">
             <ion-text>
               <p class="sign-up">
@@ -40,42 +40,76 @@
             </ion-text>
           </div>
           <div class="body-form-sign-up">
-            <ion-input [(ngModel)]="emailSignup" aria-label="Custom input" placeholder="Enter Email" class="input-email" type="email"></ion-input>
-            <p class="error-input" *ngIf="!checkEmailSignUpEnter()">Lưu ý kiểm tra lại email</p>
-            <ion-input aria-label="Custom input" placeholder="Create user name" class="input-user-name" type="text"></ion-input>
-            <ion-input aria-label="Custom input" placeholder="Phone number" class="input-phone-number" type="tel"></ion-input>
-            <ion-input [(ngModel)]="passwordSignup" aria-label="Custom input" placeholder="Password" class="input-password" type="password">
-              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-            </ion-input>
-            <ion-input [(ngModel)]="confirmPasswordSignup" aria-label="Custom input" placeholder="Confirm Password" type="password" class="input-confirm-password">
-              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-            </ion-input>
-            <p class="error-input" *ngIf="!checkPasswordSignUpEnter()">Mật khẩu confirm sai</p>
-            <!-- <ion-input aria-label="Custom input" placeholder="Enter code validate" class="input-validate-code"></ion-input> -->
-            <ion-input aria-label="Custom input" placeholder="ID Cart" class="input-id-cart" type="text"></ion-input>
-              <ion-input aria-label="Custom input" placeholder="Address" class="input-address" type="text"></ion-input>
-            <ion-button class="btn-register">Register</ion-button>
-            <div class="ion-text-center footer-form-sign-up">
-              <div class="or-contibue-with">
-                <p>or continue with</p>
+            <form [formGroup]="signupForm" (ngSubmit)="register()">
+                <ion-input type="email" formControlName="email" class="input-email" placeholder="Enter Email"></ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+                  Email không hợp lệ
+                </ion-text>
+              
+             
+                <ion-input type="text" formControlName="username" placeholder="Create user name" class="input-user-name"></ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+                  Tên người dùng quá ngắn
+                </ion-text>
+              
+             
+                <ion-input type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number"></ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
+                 Số không hợp lệ
+                </ion-text>
+              
+             
+                <ion-input type="password" formControlName="password" placeholder="Password" class="input-password">
+                  <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                </ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+                  Mật khẩu quá ngắn
+                </ion-text>
+                
+                
+                <ion-input type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="input-confirm-password">
+                  <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                </ion-input>
+                <ion-text color="danger" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched">
+                  Mật khẩu không đúng với mật khẩu đã nhập
+                </ion-text>
+              
+             
+                <ion-input type="text" formControlName="idCart" placeholder="ID Cart" class="input-id-cart"></ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('idCart')?.invalid && signupForm.get('idCart')?.touched">
+                  Bắt buộc nhập
+                </ion-text>
+                
+                
+                <ion-input type="text" formControlName="address" placeholder="Address" class="input-address"></ion-input>
+                <ion-text color="danger" *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched">
+                  Bắt buộc nhập
+                </ion-text>
+                
+                <ion-button type="submit" [disabled]="signupForm.invalid" class="btn-register">Register</ion-button>
+              
+              <div class="ion-text-center footer-form-sign-up">
+                <div class="or-contibue-with">
+                  <p>or continue with</p>
+                </div>
+                <div class="buttons-or-continue-with">
+                  <ion-button class="btn-google" fill="clear">
+                    <ion-img class="image-gg"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
+                      alt="sign-up-google"></ion-img>
+                  </ion-button>
+                  <ion-button class="btn-git" fill="clear">
+                    <ion-img class="image-git" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                      alt="sign-up-google"></ion-img>
+                  </ion-button>
+                  <ion-button class="btn-fb" fill="clear">
+                    <ion-img class="image-fb"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/800px-Facebook_Logo_%282019%29.png"
+                      alt="sign-up-google"></ion-img>
+                  </ion-button>
+                </div>
               </div>
-              <div class="buttons-or-continue-with">
-                <ion-button class="btn-google" fill="clear">
-                  <ion-img class="image-gg"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
-                    alt="sign-up-google"></ion-img>
-                </ion-button>
-                <ion-button class="btn-git" fill="clear">
-                  <ion-img class="image-git" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    alt="sign-up-google"></ion-img>
-                </ion-button>
-                <ion-button class="btn-fb" fill="clear">
-                  <ion-img class="image-fb"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/800px-Facebook_Logo_%282019%29.png"
-                    alt="sign-up-google"></ion-img>
-                </ion-button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </ion-col>

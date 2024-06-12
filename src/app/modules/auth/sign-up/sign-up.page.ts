@@ -12,28 +12,41 @@ export class SignUpPage implements OnInit {
   confirmPasswordSignup: any;
   myForm: any;
   formCheckSignUp: any;
+  signupForm: FormGroup;
 
 
-  constructor(private FormBuilder: FormBuilder) {
-    this.formCheckSignUp = this.FormBuilder.group({
-      password: [ '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(10),
-          Validators.pattern('[a-zA-Z0-9 ]*'),
-        ])
-
-      ]
-    })
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.signupForm = this.formBuilder.group({
+      email: ['@gmail.com', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      idCart: ['', Validators.required],
+      address: ['', Validators.required]
+    }, { validator: this.passwordMatchValidator });
   }
-
   
   ngOnInit() {
     this.checkEmailSignUpEnter();
     this.checkPasswordSignUpEnter();
   }
 
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password');
+    const confirmPassword = form.get('confirmPassword');
+    return password && confirmPassword && password.value === confirmPassword.value ? null : { mismatch: true };
+  }
 
+  register() {
+    if (this.signupForm.valid) {
+      console.log('Form Submitted', this.signupForm.value);
+    } else {
+      console.log('Form not valid');
+    }
+  }
 
   isValidEmail = function (emailSignup: string) {
     return (
