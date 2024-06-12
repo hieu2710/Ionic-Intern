@@ -7,15 +7,17 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size="2"></ion-col>
-      <ion-col class="title">
-        <h1>Sign in to</h1>
+      <ion-col class="left">
+        <div class="title">
+        <h1>Sign In to</h1>
         <h2>IONIC APPLICATION</h2>
         <p>
           If you don’t have an account register <br />
           You can
-          <a routerLink="sign-up">Register here!</a>
+          <a routerLink="/sign-up">Register here!</a>
         </p>
-        <img src="assets/168afcca4345533683f89bb42220b2ef.png" alt="" />
+      </div>
+        <img class="img_signin" src="assets/168afcca4345533683f89bb42220b2ef.png" alt="" />
       </ion-col>
       <ion-col>
         <div class="input">
@@ -52,11 +54,22 @@
         </div>
         <div class="difflog">
           <p>or continue with</p>
-          <div class="app">
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-google"></a>
-            <a href="#" class="fa fa-github"></a>
-          </div>
+          <div class="icon">
+          <ion-button class="btn-google" fill="clear">
+            <ion-img class="image-gg"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
+              alt="sign-up-google"></ion-img>
+          </ion-button>
+          <ion-button class="btn-git" fill="clear">
+            <ion-img class="image-git" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              alt="sign-up-google"></ion-img>
+          </ion-button>
+          <ion-button class="btn-fb" fill="clear">
+            <ion-img class="image-fb"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/800px-Facebook_Logo_%282019%29.png"
+              alt="sign-up-google"></ion-img>
+          </ion-button>
+        </div>
         </div>
       </ion-col>
     </ion-row>
