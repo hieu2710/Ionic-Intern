@@ -1,0 +1,147 @@
+
+ion-input.input-email,
+.input-user-name,
+.input-phone-number,
+.input-password,
+.input-confirm-password,
+.input-validate-code,
+.input-address,
+.input-id-cart {
+    --background: #f0efff;
+    --placeholder-color: #c2bfff;
+    
+
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 26px;
+    --padding-top: 10px;
+    margin-bottom: 20px;
+
+    width: 370px;
+    height: 60px;
+    font-weight: 400;
+    font-size: 15px;
+    --border-radius: 8px;
+
+}
+.error-input{
+    color: red;
+    font-size: 14px;
+    line-height: 0px;
+    margin-left: 10px;
+}
+.section-text{
+    padding-left: 175px;
+    padding-top: 190px;
+}
+
+.text-sign-up-to{
+    font-size: 50px;
+    font-weight: 600;
+}
+.text-lorem{
+    font-size: 35px;
+    font-weight: 500;
+    margin-top: -30px;
+}
+.top-form-sign-up{
+    margin-bottom: 28px;
+}
+.text-navigate-login-page{
+    text-decoration: none;
+    color: #605bc9;
+    font-weight: 600;
+}
+.text-top-sign-up{
+    margin-bottom: 53px;
+}
+.text-footer-sign-up{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 10px;
+    width: 321px;
+}
+.image-text-footer-sign-up{
+    width: 323px;
+    height: 540px;
+    margin-top: -118px;
+}
+.sign-up {
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.body-form-sign-up{
+    width: 40%;
+}
+
+
+.btn-register {
+    --background: #4d47c3;
+    --ripple-color: deeppink;
+    --border-radius: 8px;
+    width: 370px;
+    height: 60px;
+    margin-top: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    // box-shadow: #4d47c3 0px 10px 36px 0px, #4d47c3 0px 0px 0px 1px;
+}
+
+.btn-google, .btn-git, .btn-fb{
+    --border-radius: 50px;
+}
+
+.image-gg, .image-fb, .image-git{
+    width: 30px;
+    height: 30px;
+}
+
+.buttons-or-continue-with{
+    margin-top: 43px;
+}
+
+.footer-form-sign-up{
+    margin-top: 47px;
+}
+.or-contibue-with{
+    color: #B5B5B5;
+    font-size: 16px;
+    font-weight: 500;
+}
+// @media only screen and (min-width:1024px) and (max-width:1655px) {
+//     .image-text-footer-sign-up{
+//         width: 323px;
+//         height: 540px;
+//         margin-top: -118px;
+//     }
+// }
+
+@media only screen and  (max-width:1440px) {
+    .image-text-footer-sign-up{
+        display: none;
+    }
+}
+
+@media only screen and  (max-width:909px) {
+    .section-text{
+        padding-left: 100px;
+        padding-top: 80px;
+    }
+}
+
+@media only screen and  (max-width:1687px) {
+    .section-text{
+        padding-left: 100px;
+        padding-top: 80px;
+    }
+    .body-form-sign-up{
+        width: 48%;
+    }
+}
+
+// @media only screen and  (max-width:1024px) {
+//     .image-text-footer-sign-up{
+//         display: none;
+//     }
+// }
