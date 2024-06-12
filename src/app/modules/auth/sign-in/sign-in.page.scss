@@ -1,0 +1,140 @@
+h1 {
+    width: 231px;
+    height: 75px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 75px;
+    color: #000000;
+}
+h2 {
+    width: 396px;
+    height: 53px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 52px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+img {
+    width: 313px;
+    height: 556px;
+}
+.password_in{
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #F0EFFF;
+border-radius: 8px;
+
+}
+.title a{
+    text-decoration: none;
+    color: #4D47C3;
+    font-weight: bold;
+}
+button{
+width: 369px;
+height: 59px;
+background: #4D47C3;
+box-shadow: 0px 4px 61px rgba(77, 71, 195, 0.4);
+border-radius: 9px;
+margin-top: 30px ;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color: #FFFFFF;
+}
+ion-input {
+width: 369px;
+height: 62px;
+background-color:#F0EFFF ;
+color: #A7A3FF;
+border-radius: 8px;
+margin-top: 40px ;
+padding-left: 10px;
+}
+.sc-ion-input-md-h{
+    --border-width: none;
+}
+.forgot {
+    margin-top: 30px;
+    text-decoration: underline;
+    color: grey;
+    float: right;
+}
+.input{
+    width: 369px;
+}
+.difflog{
+    width: 369px;
+}
+.difflog p{
+margin-top: 50px;
+text-align: center;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color: #B5B5B5;
+}
+/* Style all font awesome icons */
+.fa {
+    padding-top: 5px;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 25px 40px;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+  
+  .fa-github {
+    background: #3B5998;
+    color: white;
+  }
+  .fa-google {
+    background: #dd4b39;
+    color: white;
+  }
+  .fa-facebook {
+    background: black;
+    color: white;
+  }
+
+  ion-modal {
+    --height: 50%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  
+  ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+  
+  ion-modal ion-toolbar {
+    --background: rgb(14 116 144);
+    --color: white;
+  }
+  ion-item img {
+    width: 50%;
+    height: 80%;
+    margin-left: 130px;
+    margin-top: 60px;
+  }

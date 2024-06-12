@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar></ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="2"></ion-col>
+      <ion-col class="title">
+        <h1>Sign in to</h1>
+        <h2>IONIC APPLICATION</h2>
+        <p>
+          If you don’t have an account register <br />
+          You can
+          <a routerLink="sign-up">Register here!</a>
+        </p>
+        <img src="assets/168afcca4345533683f89bb42220b2ef.png" alt="" />
+      </ion-col>
+      <ion-col>
+        <div class="input">
+          <h2>Sign in</h2>
+          <form [formGroup]="slideOneForm">
+            <ion-input
+              label="Username"
+              label-placement="floating"
+              fill="outline"
+              placeholder="Enter your Username"
+              formControlName="username"
+            ></ion-input>
+            <ion-item *ngIf="!slideOneForm.controls['username'].valid && (submitAttempt || slideOneForm.controls['username'].dirty)">
+              <p style="color: red;">Please input valid username</p>
+            </ion-item>
+            <ion-input
+              fill="outline"
+              type="password"
+              placeholder="Input your password"
+              formControlName="pass"
+            >
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            <ion-item *ngIf="!slideOneForm.controls['pass'].valid && (submitAttempt || slideOneForm.controls['pass'].dirty)">
+              <p style="color: red">Password cannot be empty</p>
+            </ion-item>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">
+              Please fill out all details accurately.
+            </p>
+            <a href="" class="forgot">Forgot password!</a> <br />
+            <button (click)="login()">Login</button>
+            
+          </form>
+        </div>
+        <div class="difflog">
+          <p>or continue with</p>
+          <div class="app">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-github"></a>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+  <ion-modal [isOpen]="isModalOpen" >
+    <ng-template>
+      <ion-content>
+        <ion-item>
+          <img src="assets/success.png" alt="Success" />
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
