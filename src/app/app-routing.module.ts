@@ -11,7 +11,6 @@ const routes: Routes = [
     redirectTo: 'sign-in',
     pathMatch: 'full'
   },
-  {
     {
     path: 'sign-up',
     loadChildren: () => import('./modules/auth/sign-up/sign-up.module').then( m => m.SignUpPageModule)
