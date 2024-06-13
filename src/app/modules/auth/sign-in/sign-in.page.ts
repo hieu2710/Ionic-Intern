@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,8 +11,17 @@ export class SignInPage implements OnInit {
   public submitAttempt: boolean = false;
   public slideOneForm: FormGroup;
   isModalOpen = false;
+  public usersData: any
 
-  constructor(private formBuilder: FormBuilder) {
+
+  ngOnInit() {
+    this.renderUser()
+  }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+  ) {
     this.slideOneForm = this.formBuilder.group({
       username: [
         '',
@@ -25,6 +35,22 @@ export class SignInPage implements OnInit {
     });
   }
 
+  renderUser() {
+    this.userService.getUsers().subscribe(
+      (res: any) => {
+        // if(res && Array.isArray(res.data)){
+        //   this.usersData = res.data.map((item: any) => item)
+        //   console.log("usersData", this.usersData)
+        // } else {
+        //   console.log("Unexpected response structure", res);
+        // }
+        this.usersData = res
+      }, (error: any) => {
+        console.error("sadasd")
+      }
+    )
+  }
+  
   check() {
     if (!this.slideOneForm.valid) {
       this.submitAttempt = true;
@@ -56,5 +82,5 @@ export class SignInPage implements OnInit {
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {}
+
 }
