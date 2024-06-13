@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,20 +13,59 @@ export class SignUpPage implements OnInit {
   myForm: any;
   formCheckSignUp: any;
   signupForm: FormGroup;
+  validations: any
 
 
   constructor(
     private formBuilder: FormBuilder
   ) {
+    
+  this.validations = {
+    'email': [
+      { type: 'required', message: 'Bắt buộc nhập' },
+      { type: 'email', message: 'Form email wrong', }
+    ],
+      'username': [
+        { type: 'required', message: 'Bắt buộc nhập' },
+        { type: 'minlength(5)', message: 'Tên người dùng ít nhất 5 ký tự' },
+      ],
+      'phone': [
+        { type: 'required', message: 'Phone is required.' },
+        { type: 'pattern(/^\d{10}$/)', message: 'Số điện thoại phải đủ 10 số' },
+      ],
+      'password': [
+        { type: 'required', message: 'Password is required.' },
+        { type: 'minlength', message: 'Username must be at least 10 characters long.' },
+        { type: 'pattern', message: 'Your password must contain only numbers and letters.' },
+      ],
+      'confirmPassword': [
+        { type: 'required', message: 'Bắt buộc nhập' },
+      ],
+      'idCard': [
+        { type: 'required', message: 'Bắt buộc nhập' },
+        { type: 'pattern', message: 'ID Card phải đủ 12 số' },
+      ],
+      'address': [
+        { type: 'required', message: 'Bắt buộc nhập' },
+      ],
+      // other validations
+    };
+
     this.signupForm = this.formBuilder.group({
       email: ['@gmail.com', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(5)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['',  Validators.compose([
+        Validators.minLength(6),
+        Validators.required,
+        Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
+      ])],
       confirmPassword: ['', Validators.required],
-      idCart: ['', Validators.required],
+      idCard: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
       address: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+    }, { 
+      validator: this.passwordMatchValidator
+     });
   }
   
   ngOnInit() {
@@ -42,6 +81,7 @@ export class SignUpPage implements OnInit {
 
   register() {
     if (this.signupForm.valid) {
+      localStorage.setItem('Save in local storage', JSON.stringify(this.signupForm.value));
       console.log('Form Submitted', this.signupForm.value);
     } else {
       console.log('Form not valid');
