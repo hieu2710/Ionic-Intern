@@ -8,10 +8,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'sign-in',
+    // redirectTo: 'sign-in',
+    redirectTo: 'sign-up',
     pathMatch: 'full'
   },
-  {
     {
     path: 'sign-up',
     loadChildren: () => import('./modules/auth/sign-up/sign-up.module').then( m => m.SignUpPageModule)

@@ -29,8 +29,8 @@
             </ion-text>
           </div>
           <div class="body-form-sign-up">
-            <form [formGroup]="signupForm" (ngSubmit)="register()">
-                <ion-input type="email" formControlName="email" class="input-email" placeholder="Enter Email" clearInput></ion-input>
+            <form [formGroup]="signupForm" (ngSubmit)="getDataToSignUp()">
+                <ion-input [(ngModel)]="email" type="email" formControlName="email" class="input-email" placeholder="Enter Email" clearInput></ion-input>
                 <div *ngFor="let validation of validations.email">
                   <ion-text class="errorMessage" color="danger" *ngIf="signupForm.get('email')?.hasError(validation.type) && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
                     <!-- .hasError === .invalid -->
@@ -40,7 +40,7 @@
                 </div>
 
 
-                <ion-input type="text" formControlName="username" placeholder="Create user name" class="input-user-name" clearInput></ion-input>
+                <ion-input  [(ngModel)]="username" type="text" formControlName="username" placeholder="Create name login" class="input-user-name" clearInput></ion-input>
                 <div *ngFor="let validation of validations.username">
                   <ion-text color="danger" *ngIf="signupForm.get('username')?.hasError(validation.type) && signupForm.get('username')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
@@ -49,16 +49,16 @@
                 </div>
 
 
-                <ion-input type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number" clearInput></ion-input>
+                <!-- <ion-input [(ngModel)]="Ph" type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number" clearInput></ion-input>
                 <div *ngFor="let validation of validations.phone">
                   <ion-text color="danger" *ngIf="signupForm.get('phone')?.hasError(validation.type) && signupForm.get('phone')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
                     {{ validation.message }}
                    </ion-text>
-                </div>
+                </div> -->
 
 
-                <ion-input type="password" formControlName="password" placeholder="Password" class="input-password"clearInput>
+                <ion-input  [(ngModel)]="password" type="password" formControlName="password" placeholder="Password" class="input-password"clearInput>
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
                 <div *ngFor="let validation of validations.password">
@@ -80,16 +80,16 @@
                 </div>
               
 
-                <ion-input type="text" formControlName="idCard" placeholder="ID Cart" class="input-id-cart" clearInput></ion-input>
-                <div *ngFor="let validation of validations.idCard">
-                  <ion-text color="danger" *ngIf="signupForm.get('idCard')?.hasError(validation.type) && signupForm.get('idCard')?.touched">
+                <!-- <ion-input [(ngModel)]="fullname" type="text" formControlName="fullname" placeholder="Full name" class="input-id-cart" clearInput></ion-input>
+                <div *ngFor="let validation of validations.fullname">
+                  <ion-text color="danger" *ngIf="signupForm.get('fullname')?.hasError(validation.type) && signupForm.get('fullname')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
                     {{ validation.message }}
                   </ion-text>
-                </div>
+                </div> -->
                 
                 
-                <ion-input type="text" formControlName="address" placeholder="Address" class="input-address" clearInput></ion-input>
+                <ion-input [(ngModel)]="address" type="text" formControlName="address" placeholder="Address" class="input-address" clearInput></ion-input>
                 <div *ngFor="let validation of validations.address">
                   <ion-text color="danger" *ngIf="signupForm.get('address')?.hasError(validation.type) && signupForm.get('address')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
@@ -98,7 +98,8 @@
                 </div>
 
                 <ion-button  [routerLink]="['/home']" type="submit" [disabled]="signupForm.invalid" class="btn-register" >Register</ion-button>
-              
+
+
               <div class="ion-text-center footer-form-sign-up">
                 <div class="or-contibue-with">
                   <p>or continue with</p>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,10 +15,15 @@ export class SignUpPage implements OnInit {
   formCheckSignUp: any;
   signupForm: FormGroup;
   validations: any
-
+  address: any;
+  email: any;
+  password: any;
+  username: any;
+  // fullname: any
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {
     
   this.validations = {
@@ -41,27 +47,25 @@ export class SignUpPage implements OnInit {
       'confirmPassword': [
         { type: 'required', message: 'Bắt buộc nhập' },
       ],
-      'idCard': [
-        { type: 'required', message: 'Bắt buộc nhập' },
-        { type: 'pattern', message: 'ID Card phải đủ 12 số' },
-      ],
+      // 'fullname': [
+      //   { type: 'required', message: 'Bắt buộc nhập' },
+      //   { type: 'minLength', message: 'ID Card phải đủ 12 số' },
+      // ],
       'address': [
         { type: 'required', message: 'Bắt buộc nhập' },
       ],
-      // other validations
     };
 
     this.signupForm = this.formBuilder.group({
       email: ['@gmail.com', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       password: ['',  Validators.compose([
         Validators.minLength(6),
         Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
       ])],
       confirmPassword: ['', Validators.required],
-      idCard: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      // fullname: ['', [Validators.required]],
       address: ['', Validators.required]
     }, { 
       validator: this.passwordMatchValidator
@@ -69,8 +73,7 @@ export class SignUpPage implements OnInit {
   }
   
   ngOnInit() {
-    this.checkEmailSignUpEnter();
-    this.checkPasswordSignUpEnter();
+    this.getUser();
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -79,13 +82,44 @@ export class SignUpPage implements OnInit {
     return password && confirmPassword && password.value === confirmPassword.value ? null : { mismatch: true };
   }
 
+  getDataToSignUp() {
+    const dataSignUp = {
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      address: this.address,
+      gender: "...",
+      // name: this.fullname
+    }
+    this.userService.postUsers(dataSignUp).subscribe(
+      (res:any) => {
+        console.log("success", res)
+      }, 
+      (err:any) => {
+        console.error("failed", err)
+      }
+    )
+  }
+user: any
+  getUser(){
+    this.userService.getUsers().subscribe (
+      (res:any) => {
+        this.user = res
+        // this.user = res
+        console.log(this.user)
+      }, (err: any) => {
+        console.error(err)
+      }
+    )
+  }
+
   register() {
-    if (this.signupForm.valid) {
+    // if (this.signupForm.valid) {
       localStorage.setItem('Save in local storage', JSON.stringify(this.signupForm.value));
       console.log('Form Submitted', this.signupForm.value);
-    } else {
-      console.log('Form not valid');
-    }
+    // } else {
+    //   console.log('Form not valid');
+    // }
   }
 
   isValidEmail = function (emailSignup: string) {
@@ -95,21 +129,7 @@ export class SignUpPage implements OnInit {
     );
   };
 
-  checkEmailSignUpEnter() {
-    if (this.isValidEmail(this.emailSignup) || this.emailSignup == null) {
-      return true;
-    }
-    return false;
-  }
 
-  checkPasswordSignUpEnter() {
-    if(this.passwordSignup === "" || this.confirmPasswordSignup === ""){
-      return true;
-    } else if (this.passwordSignup === this.confirmPasswordSignup) {
-      return true;
-    }
-    return false;
-    }
 
     // if (this.passwordSignup === this.confirmPasswordSignup) {
     //   return true;

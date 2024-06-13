@@ -14,4 +14,16 @@ export class UserService {
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`)
   }
+
+  postUsers(dataSignUp: any): Observable<any> {
+    const requestPost ={
+      username: dataSignUp.username,
+      email: dataSignUp.email,
+      password: dataSignUp.password,
+      address: dataSignUp.address,
+      gender: "...",
+      name: dataSignUp.fullname
+    };
+    return this.http.post(`${this.apiUrl}/users`, requestPost)
+  }
 }
