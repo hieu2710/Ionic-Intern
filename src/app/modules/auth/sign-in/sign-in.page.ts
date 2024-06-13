@@ -98,7 +98,7 @@ export class SignInPage implements OnInit {
         if (this.verify) {
           this.isModalOpen = true;
           setTimeout(() => {
-            window.location.assign('./');
+            window.location.assign('./home');
           }, 2000);
         } else {
           alert(this.verify);
