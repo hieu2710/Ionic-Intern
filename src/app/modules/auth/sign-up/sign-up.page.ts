@@ -60,7 +60,7 @@ export class SignUpPage implements OnInit {
       email: ['@gmail.com', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['',  Validators.compose([
-        Validators.minLength(6),
+        Validators.minLength(10),
         Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
       ])],
