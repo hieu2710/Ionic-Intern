@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/auth/sign-in/sign-in.module').then( m => m.SignInPageModule)
 
   },
+  {
+    path: 'token',
+    loadChildren: () => import('./modules/check/token/token.module').then( m => m.TokenPageModule)
+  },
 ];
 
 @NgModule({

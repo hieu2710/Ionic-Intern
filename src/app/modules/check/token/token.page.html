@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>token</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">token</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="text-align: center;">
+    <h2>Login</h2>
+    <input type="email" [(ngModel)]="username" placeholder="User name">
+    <input type="password" [(ngModel)]="password" placeholder="Password">
+    <ion-button (click)="login()">Login</ion-button>
+    <br>
+    <ion-button color="success" (click)="check()">Check send token to request</ion-button>
+
+
+    <div>
+      <p>Token: {{ token }}</p>
+      <ion-button (click)="receivedToken()">Check received token</ion-button>
+    </div>
+
+    <div *ngFor="let data of protectedData">
+      <p>Protected Data: {{ data.content }}</p>
+
+    </div>
+  </div>
+</ion-content>
