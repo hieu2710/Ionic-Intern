@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../user';
+import { RelationshopHttpClient } from './header-request.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private apiUrl = "http://localhost:3000"
@@ -22,10 +22,14 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/users`);
   }
 
+  login(username: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, { username });
+  }
+  ReadUsers(){
+    this.http.get<any>(`${this.apiUrl}`)
+  }
   postUsers(dataSignUp: any): Observable<any> {
-    // const headers = { 'Authorization': `Bearer ${this.tokenFake}` }
-    
-    const requestPost ={
+    const requestPost = {
       username: dataSignUp.username,
       email: dataSignUp.email,
       password: dataSignUp.password,
