@@ -25,7 +25,6 @@ export class UserService {
   }
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}`);
-
   }
 
   login(username: string): Observable<any> {
