@@ -63,6 +63,20 @@ export class SignUpPage implements OnInit {
       ],
       address: [{ type: 'required', message: 'Bắt buộc nhập' }],
     };
+    this.signupForm = this.formBuilder.group({
+      email: ['@gmail.com', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['',  Validators.compose([
+        Validators.minLength(10),
+        Validators.required,
+        Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
+      ])],
+      confirmPassword: ['', Validators.required],
+      // fullname: ['', [Validators.required]],
+      address: ['', Validators.required]
+    }, { 
+      validator: this.passwordMatchValidator
+     });
 
     this.signupForm = this.formBuilder.group({
       email: ['@gmail.com', [Validators.required, Validators.email]],
