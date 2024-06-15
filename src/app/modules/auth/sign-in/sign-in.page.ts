@@ -44,62 +44,62 @@ export class SignInPage implements OnInit {
   }
 
  // Select user in api 
-  renderUser() {
-    var current_username = (
-      document.getElementById('username') as HTMLInputElement
-    ).value;
-    this.userService.getUsers().subscribe(
-      (res: User[]) => {
-        this.usersData = res;
-        this.match_user = this.usersData.find(
-          (user: any) => user.name === current_username,
-          console.log(this.match_user)
-        );
-      },
-      (error: any) => {
-        console.error('Error fetching users', error);
-      }
-    );
-  }
+  // renderUser() {
+  //   var current_username = (
+  //     document.getElementById('username') as HTMLInputElement
+  //   ).value;
+  //   this.userService.getUsers().subscribe(
+  //     (res: User[]) => {
+  //       this.usersData = res;
+  //       this.match_user = this.usersData.find(
+  //         (user: any) => user.name === current_username,
+  //         console.log(this.match_user)
+  //       );
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching users', error);
+  //     }
+  //   );
+  // }
 
 //  check pwd of user, timeout for fetch time 
-  checkUser() {
-    setTimeout(() => {
-      const current_password = (document.getElementById('password') as HTMLInputElement).value;
-      if (this.match_user) {
-        if (this.match_user.pass === current_password) {
-          this.verify = true;
-          console.log(this.verify, 'correct');
+  // checkUser() {
+  //   setTimeout(() => {
+  //     const current_password = (document.getElementById('password') as HTMLInputElement).value;
+  //     if (this.match_user) {
+  //       if (this.match_user.pass === current_password) {
+  //         this.verify = true;
+  //         console.log(this.verify, 'correct');
           
-          const token = 'FeInTeRnReLaTiOnShOp2024';
-          this.AuthService.setToken(token);
-          const retrievedToken = this.AuthService.getToken();
-          if (retrievedToken === token) {
-            console.log('Token successfully set and retrieved:', retrievedToken);
-          } else {
-            console.log('Failed to retrieve the correct token');
-          }
-        } else {
-          console.log('Wrong password');
-        }
-      } else {
-        console.log('User not found');
-      }
-    }, 2000);
-    // const user = (document.getElementById('username') as HTMLInputElement).value
-    // if(this.userService.login(user))
-    //   {
-    //     console.log("true");
-    //   }
-    //   else
-    //   {
-    //     console.log("false")
-    //   }
-  }
+  //         const token = 'FeInTeRnReLaTiOnShOp2024';
+  //         this.AuthService.setToken(token);
+  //         const retrievedToken = this.AuthService.getToken();
+  //         if (retrievedToken === token) {
+  //           console.log('Token successfully set and retrieved:', retrievedToken);
+  //         } else {
+  //           console.log('Failed to retrieve the correct token');
+  //         }
+  //       } else {
+  //         console.log('Wrong password');
+  //       }
+  //     } else {
+  //       console.log('User not found');
+  //     }
+  //   }, 2000);
+  //   // const user = (document.getElementById('username') as HTMLInputElement).value
+  //   // if(this.userService.login(user))
+  //   //   {
+  //   //     console.log("true");
+  //   //   }
+  //   //   else
+  //   //   {
+  //   //     console.log("false")
+  //   //   }
+  // }
   //check button click without fill
-  getTest(){
-    console.log(this.userService.ReadUsers())
-  }
+  // getTest(){
+  //   console.log(this.userService.ReadUsers())
+  // }
   async check() {
     if (!this.slideOneForm.valid) {
       this.submitAttempt = true;
@@ -135,8 +135,8 @@ export class SignInPage implements OnInit {
     
     this.check();
    this.sucess_login();
-    this.renderUser();
-    this.checkUser();
+    // this.renderUser();
+    // this.checkUser();
   }
 
 

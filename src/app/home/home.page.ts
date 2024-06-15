@@ -10,8 +10,9 @@ export class HomePage {
   isAuthenticated: boolean = false;
 
   constructor(
-    private router:Router,
-  ) {}
+    private router:Router,) {
+
+  }
 
 
   logout(){
