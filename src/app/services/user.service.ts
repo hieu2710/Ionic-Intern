@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../user';
-import { RelationshopHttpClient } from './header-request.service';
+// import { RelationshopHttpClient } from './header-request.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +13,28 @@ export class UserService {
   public tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
   constructor(
-    private http: HttpClient,
-    private http: RelationshopHttpClient
+    private httpclient: HttpClient,
+    // private http: RelationshopHttpClient
   ) { }
 
-  getUsers(): Observable<any> {
+  getUser(): Observable<any> {
     const headers = { 
       'Authorization': `Bearer ${this.tokenFake}` ,
     }
-    return this.http.get(`${this.apiUrl}/users`);
-
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}`);
-
+    return this.httpclient.get(`${this.apiUrl}/users`);
   }
 
-  login(username: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, { username });
-  }
-  ReadUsers(){
-    this.http.get<any>(`${this.apiUrl}`)
-  }
+  // getUsers(): Observable<User[]> {
+  //   return this.http.get<User[]>(`${this.apiUrl}`);
+
+  // }
+
+  // login(username: string): Observable<any> {
+  //   return this.http.post<any>(`${this.apiUrl}`, { username });
+  // }
+  // ReadUsers(){
+  //   this.http.get<any>(`${this.apiUrl}`)
+  // }
   postUsers(dataSignUp: any): Observable<any> {
     // const headers = { 'Authorization': `Bearer ${this.tokenFake}` }
     
@@ -47,7 +48,7 @@ export class UserService {
     };
     document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`;
     
-    return this.http.post(`${this.apiUrlMock}`,requestPost)
+    return this.httpclient.post(`${this.apiUrlMock}`,requestPost)
 
   }
 }
