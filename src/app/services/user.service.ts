@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../user';
-// import { RelationshopHttpClient } from './header-request.service';
+import { RelationshopHttpClient } from './header-request.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -27,17 +27,12 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}`);
   }
 
-  // getUsers(): Observable<User[]> {
-  //   return this.http.get<User[]>(`${this.apiUrl}`);
-
-  // }
-
-  // login(username: string): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}`, { username });
-  // }
-  // ReadUsers(){
-  //   this.http.get<any>(`${this.apiUrl}`)
-  // }
+  login(username: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, { username });
+  }
+  ReadUsers(){
+    this.http.get<any>(`${this.apiUrl}`)
+  }
   postUsers(dataSignUp: any): Observable<any> {
     const requestPost = {
       username: dataSignUp.username,
