@@ -44,23 +44,23 @@ export class SignInPage implements OnInit {
   }
 
  // Select user in api 
-  // renderUser() {
-  //   var current_username = (
-  //     document.getElementById('username') as HTMLInputElement
-  //   ).value;
-  //   this.userService.getUsers().subscribe(
-  //     (res: User[]) => {
-  //       this.usersData = res;
-  //       this.match_user = this.usersData.find(
-  //         (user: any) => user.name === current_username,
-  //         console.log(this.match_user)
-  //       );
-  //     },
-  //     (error: any) => {
-  //       console.error('Error fetching users', error);
-  //     }
-  //   );
-  // }
+  renderUser() {
+    var current_username = (
+      document.getElementById('username') as HTMLInputElement
+    ).value;
+    this.userService.getUsers().subscribe(
+      (res: User[]) => {
+        this.usersData = res;
+        this.match_user = this.usersData.find(
+          (user: any) => user.name === current_username,
+          console.log(this.match_user)
+        );
+      },
+      (error: any) => {
+        console.error('Error fetching users', error);
+      }
+    );
+  }
 
 //  check pwd of user, timeout for fetch time 
   // checkUser() {
