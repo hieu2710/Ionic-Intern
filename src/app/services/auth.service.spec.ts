@@ -1,16 +1,30 @@
-import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
+import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-describe('AuthService', () => {
-  let service: AuthService;
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private tokenKey = 'authToken';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
-  });
+  constructor(private jwtHelper: JwtHelperService) { }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return token != null && !this.jwtHelper.isTokenExpired(token);
+  }
+}
+
