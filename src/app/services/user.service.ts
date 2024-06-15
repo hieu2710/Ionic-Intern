@@ -8,23 +8,33 @@ import { User } from '../user';
 })
 export class UserService {
   private apiUrl = "http://localhost:3000"
+  private apiUrlMock = "https://666c06cf49dbc5d7145c4413.mockapi.io/api/users/users"
+  public tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
   constructor(
     private http: HttpClient
   ) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users`);
+  getUsers(): Observable<any> {
+    const headers = { 
+      'Authorization': `Bearer ${this.tokenFake}` ,
+    }
+    return this.http.get(`${this.apiUrl}/users`);
   }
 
   postUsers(dataSignUp: any): Observable<any> {
+    // const headers = { 'Authorization': `Bearer ${this.tokenFake}` }
+    
     const requestPost ={
       username: dataSignUp.username,
       email: dataSignUp.email,
       password: dataSignUp.password,
+      phone: dataSignUp.phone,
       address: dataSignUp.address,
-      gender: "...",
       name: dataSignUp.fullname
     };
-    return this.http.post(`${this.apiUrl}/users`, requestPost)
+    document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`;
+    
+    return this.http.post(`${this.apiUrlMock}`,requestPost)
   }
 }
