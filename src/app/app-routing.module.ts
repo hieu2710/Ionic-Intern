@@ -13,7 +13,11 @@ const routes: Routes = [
   },
   {
     path: '',
+<<<<<<< HEAD
     redirectTo: 'sign-in',
+=======
+    redirectTo: 'sign-up',
+>>>>>>> 3b576764 (feat(Register): Add feature to save login after registering)
     pathMatch: 'full'
   },
     {

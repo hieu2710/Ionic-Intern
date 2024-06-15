@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../user';
-import { RelationshopHttpClient } from './header-request.service';
+import { HttpClient } from '@angular/common/http'; 
 
 @Injectable({
   providedIn: 'root',
@@ -13,20 +13,20 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private http: RelationshopHttpClient
   ) { }
 
   getUsers(): Observable<any> {
     const headers = { 
       'Authorization': `Bearer ${this.tokenFake}` ,
     }
-    return this.http.get(`${this.apiUrl}/users`);
+    return this.http.get(`${this.apiUrl}/users`);}
 
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}`);
+  // getUsers(): Observable<User[]> {
+  //   return this.http.get<User[]>(`${this.apiUrl}`);
 
-  }
+  // }
+  // }
 
   login(username: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}`, { username });
@@ -48,6 +48,5 @@ export class UserService {
     document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`;
     
     return this.http.post(`${this.apiUrlMock}`,requestPost)
-
   }
 }
