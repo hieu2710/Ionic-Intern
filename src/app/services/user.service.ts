@@ -8,12 +8,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = "http://localhost:3000"
+  private apiUrl = 'https://666c01a849dbc5d7145c2bde.mockapi.io/api/v1/user';
   private apiUrlMock = "https://666c06cf49dbc5d7145c4413.mockapi.io/api/users/users"
   public tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
   constructor(
-    private http: HttpClient
+    private httpClient: HttpClient,
+    private http: RelationshopHttpClient
   ) { }
 
   getUser(): Observable<any> {
@@ -45,5 +46,6 @@ export class UserService {
     document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`;
     
     return this.http.post(`${this.apiUrlMock}`,requestPost)
+
   }
 }
