@@ -15,13 +15,29 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-  getUser(): Observable<any> {
+  ngOnInit() {
+    
+  }
+
+public messageExistedEmail: string | undefined;
+public messageExistedUserName: string | undefined;
+  getUser(username: string, email: string): Observable<{emailExists: boolean, usernameExists: boolean}> {
     const headers = { 
       'Authorization': `Bearer ${this.tokenFake}` ,
     }
-    return this.http.get(`${this.apiUrl}/users`);
-
+    return new Observable(observer => { 
+      return this.http.get<any[]>(`${this.apiUrlMock}`).subscribe(usedName => {
+        const usernameExists = usedName.find(u => u.username === username)
+        const emailExists = usedName.find(e => e.email === email)
+        observer.next({usernameExists,emailExists})
+        observer.complete()
+      }, error => {
+        observer.error(error)
+      }
+    )
+    })
   }
+
   postUsers(dataSignUp: any): Observable<any> {
     const requestPost = {
       username: dataSignUp.username,

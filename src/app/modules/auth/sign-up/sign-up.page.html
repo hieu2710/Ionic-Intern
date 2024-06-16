@@ -29,18 +29,17 @@
             </ion-text>
           </div>
           <div class="body-form-sign-up">
-            <form [formGroup]="signupForm" (ngSubmit)="getDataToSignUp()">
+            <form [formGroup]="signupForm">
                 <ion-input [(ngModel)]="email" type="email" formControlName="email" class="input-email" placeholder="Enter Email" clearInput></ion-input>
                 <div *ngFor="let validation of validations.email">
                   <ion-text class="errorMessage" color="danger" *ngIf="signupForm.get('email')?.hasError(validation.type) && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
-
+                      <!-- .hasError === .invalid -->
                     <ion-icon name="information-circle-outline"></ion-icon>
                     {{ validation.message }}
                   </ion-text>
                 </div>
-                                    <!-- .hasError === .invalid -->
 
-
+                          
                 <ion-input  [(ngModel)]="username" type="text" formControlName="username" placeholder="Create name login" class="input-user-name" clearInput></ion-input>
                 <div *ngFor="let validation of validations.username">
                   <ion-text color="danger" *ngIf="signupForm.get('username')?.hasError(validation.type) && signupForm.get('username')?.touched">
@@ -48,6 +47,7 @@
                     {{ validation.message }}
                   </ion-text>
                 </div>
+                <!-- <button (click)="checkEmailUserName()">checkEmailUserName</button> -->
 
 
                 <ion-input [(ngModel)]="phone" type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number" clearInput></ion-input>
@@ -98,8 +98,7 @@
                   </ion-text>
                 </div>
 
-                <ion-button  [routerLink]="['/home']" [disabled]="signupForm.invalid" type="submit" class="btn-register" >Register</ion-button>
-
+                <ion-button (click)="checkEmailUserName()" [disabled]="signupForm.invalid" type="submit" class="btn-register" >Register</ion-button>
             </form>
           </div>
         </div>

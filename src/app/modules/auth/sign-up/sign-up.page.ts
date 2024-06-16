@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractC
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,21 +26,23 @@ export class SignUpPage implements OnInit {
   protectedData: any;
   phone: any;
   fullname: string | undefined;
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private authService: AuthService,
-    private router: Router
+    private alertController: AlertController,
+    private router:Router,
+    private loadingController: LoadingController
   ) {
     this.validations = {
       email: [
         { type: 'required', message: 'Bắt buộc nhập' },
-        { type: 'email', message: 'Form email wrong' },
+        { type: 'email', message: 'Email chưa đúng định dạng' },
       ],
       username: [
         { type: 'required', message: 'Bắt buộc nhập' },
-        { type: 'minlength(5)', message: 'Tên người dùng ít nhất 5 ký tự' },
+        { type: 'minlength', message: 'Tên người dùng ít nhất 7 ký tự' },
       ],
       phone: [
         { type: 'required', message: 'Phone is required.' },
@@ -65,29 +68,15 @@ export class SignUpPage implements OnInit {
     };
     this.signupForm = this.formBuilder.group({
       email: ['@gmail.com', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
+      username: ['', [Validators.required, Validators.minLength(7)]],
       password: ['',  Validators.compose([
         Validators.minLength(10),
         Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
       ])],
       confirmPassword: ['', Validators.required],
-      // fullname: ['', [Validators.required]],
-      address: ['', Validators.required]
-    }, { 
-      validator: this.passwordMatchValidator
-     });
-
-    this.signupForm = this.formBuilder.group({
-      email: ['@gmail.com', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['',  Validators.compose([
-        Validators.minLength(10),
-        Validators.required,
-        Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
-      ])],
-      confirmPassword: ['', Validators.required],
-      // fullname: ['', [Validators.required]],
+      fullname: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
       address: ['', Validators.required]
     }, { 
       validator: this.passwordMatchValidator
@@ -95,7 +84,8 @@ export class SignUpPage implements OnInit {
   }
 
   ngOnInit() {
-    this.signupForm;
+    // this.signupForm;
+    
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -104,7 +94,48 @@ export class SignUpPage implements OnInit {
     return password && confirmPassword && password.value === confirmPassword.value ? null : { mismatch: true };
   }
 
-  getDataToSignUp() {
+  async checkEmailUserName(){
+    const loading = await this.loadingController.create({ 
+      cssClass: 'loading',
+    })
+    await loading.present();
+    this.userService.getUser(this.username, this.email).subscribe(async useLoginName =>{
+      console.log(useLoginName)
+      if(useLoginName.emailExists || useLoginName.usernameExists) {
+        let message = ""
+        if(useLoginName.emailExists && useLoginName.usernameExists) {
+         message = "Email và Tải khoản của bạn đã được sử dụng để đăng ký, vui lòng sử dụng tài khoản khác. "
+        } 
+        else if(useLoginName.emailExists) {
+          message = "Email của bạn đã được sử dụng để đăng ký, vui lòng sử dụng tài khoản khác. "
+        }
+        else if(useLoginName.usernameExists) {
+          message = "Tài khoản của bạn đã được sử dụng để đăng ký, vui lòng sử dụng tài khoản khác."
+        }
+        const alert = await this.alertController.create({
+          header: 'Đăng ký thất bại',
+          message: message,
+          buttons: ['Đồng ý'],
+        })
+        loading.dismiss();
+        await alert.present();
+        console.log("chưa tạo tài khoản",useLoginName)
+      } else {
+        loading.dismiss();
+        this.getDataToSignUp();
+        console.log("đã tạo tài khoản",useLoginName)
+      }
+    }, error => {
+      loading.dismiss();
+      console.error('Lỗi khi tìm kiếm người dùng', error);
+    })
+  }
+
+  async getDataToSignUp() {
+    const loading = await this.loadingController.create({ 
+      cssClass: 'loading',
+    })
+    await loading.present();
     const dataSignUp = {
       username: this.username,
       email: this.email,
@@ -115,9 +146,13 @@ export class SignUpPage implements OnInit {
     };
     this.userService.postUsers(dataSignUp).subscribe(
       (res: any) => {
+        loading.dismiss();
+        this.router.navigate(['home'])
         console.log('success', res);
+        
       },
       (err: any) => {
+        loading.dismiss();
         console.error('failed', err);
       }
     );
