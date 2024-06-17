@@ -38,14 +38,14 @@ public messageExistedUserName: string | undefined;
     })
   }
 
-  postUsers(dataSignUp: any): Observable<any> {
+  postUsers(getInforUser: any): Observable<any> {
     const requestPost = {
-      username: dataSignUp.username,
-      email: dataSignUp.email,
-      password: dataSignUp.password,
-      phone: dataSignUp.phone,
-      address: dataSignUp.address,
-      name: dataSignUp.fullname
+      username: getInforUser.username,
+      email: getInforUser.email,
+      password: getInforUser.password,
+      phone: getInforUser.phone,
+      address: getInforUser.address,
+      name: getInforUser.fullname
     };
     document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`;
     
