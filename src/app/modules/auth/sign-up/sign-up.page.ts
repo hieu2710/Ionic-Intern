@@ -37,11 +37,11 @@ export class SignUpPage implements OnInit {
   ) {
     this.validations = {
       email: [
-        { type: 'required', message: 'Bắt buộc nhập' },
+        { type: 'required', message: 'Email is required' },
         { type: 'email', message: 'Email chưa đúng định dạng' },
       ],
       username: [
-        { type: 'required', message: 'Bắt buộc nhập' },
+        { type: 'required', message: 'Username is required' },
         { type: 'minlength', message: 'Tên người dùng ít nhất 7 ký tự' },
       ],
       phone: [
@@ -59,7 +59,7 @@ export class SignUpPage implements OnInit {
           message: 'Your password must contain only numbers and letters.',
         },
       ],
-      confirmPassword: [{ type: 'required', message: 'Bắt buộc nhập' }],
+      confirmPassword: [{ type: 'required', message: 'Confirm password is required' }],
       fullname: [
         { type: 'required', message: 'Bắt buộc nhập' },
         { type: 'minLength', message: 'ID Card phải đủ 12 số' },
