@@ -44,17 +44,19 @@ ion-input.input-email,
 }
 
 
-.section-text{
+.section-text {
     margin-left: 26px;
     margin-bottom: 52px;
     padding-top: 86px;
-}
-
-.text-sign-up-to{
-    font-size: 26px;
-    font-weight: 600;
-    // line-height: 39px;
-    text-align: left;
+    .text-top-sign-up {
+        margin-bottom: 32px;
+        .text-sign-up-to{
+            font-size: 26px;
+            font-weight: 600;
+            // line-height: 39px;
+            text-align: left;
+        }
+    }
 }
 
 .text-lorem{
@@ -81,9 +83,7 @@ ion-input.input-email,
     margin-left: 10px;
 }
 
-.text-top-sign-up{
-    margin-bottom: 32px;
-}
+
 .image-text-footer-sign-up{
     width: 323px;
     height: 540px;
