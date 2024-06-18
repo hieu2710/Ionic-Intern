@@ -15,8 +15,6 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-public messageExistedEmail: string | undefined;
-public messageExistedUserName: string | undefined;
   getUser(username: string, email: string): Observable<{emailExists: boolean, usernameExists: boolean}> {
     const headers = { 
       'Authorization': `Bearer ${this.tokenFake}` ,
