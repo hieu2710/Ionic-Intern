@@ -1,32 +1,30 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row class="row">
-      <ion-col size="2"></ion-col>
-
-      <ion-col >
-        <div class="section-text">
-          <div class="text-top-sign-up">
-            <div style="margin-bottom: 5px;">
-              <ion-text class="text-sign-up-to">Sign Up to </ion-text>
+    <ion-row class="container">
+      <!-- <ion-col size="2"></ion-col> -->
+      <ion-col>
+        <div class="title-sign-up">
+          <div class="top">
+            <div class="txt-top">
+              <ion-text class="above">Sign Up to </ion-text>
             </div>
-            <!-- <br> -->
-            <ion-text class="text-lorem">Lorem Ipsum is simply </ion-text>
+            <ion-text class="below">Lorem Ipsum is simply </ion-text>
           </div>
-               <div style="display: flex;">
-                <div class="text-footer-sign-up">
-                  <ion-text class="text-if-have-account">If you already have an account register</ion-text>
-                  <br>
-                  <ion-text class="text-you-can">You can </ion-text>
-                  <ion-text class="text-navigate-login-page">
-                     <a routerLink="/sign-in"> Login here !</a>
-                    </ion-text>
-                </div>
-                <img class="image-text-footer-sign-up" src="../../../../assets/user-message.png">
-               </div>
+          <div class="top" >
+            <div class="text-footer-sign-up">
+              <ion-text class="text-if-have-account">If you already have an account register</ion-text>
+              <br>
+              <ion-text class="text-you-can">You can </ion-text>
+              <ion-text class="text-navigate-login-page">
+                <a routerLink="/sign-in"> Login here !</a>
+              </ion-text>
+            </div>
+            <img class="image-text-footer-sign-up" src="../../../../assets/user-message.png">
+          </div>
         </div>
       </ion-col>
 
-      <ion-col  class="form-sign-up" >
+      <ion-col  class="form-sign-up">
         <div>
           <div class="top-form-sign-up">
             <ion-text>
@@ -40,13 +38,11 @@
                 <ion-input [(ngModel)]="email" type="email" formControlName="email" class="input-email" placeholder="Enter Email" clearInput></ion-input>
                 <div *ngFor="let validation of validations.email">
                   <ion-text class="error-message" color="danger" *ngIf="signupForm.get('email')?.hasError(validation.type) && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
-                      <!-- .hasError === .invalid -->
                     <ion-icon name="information-circle-outline"></ion-icon>
                     <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
 
-                          
                 <ion-input  [(ngModel)]="username" type="text" formControlName="username" placeholder="Create name login" class="input-user-name" clearInput></ion-input>
                 <div *ngFor="let validation of validations.username">
                   <ion-text class="error-message" color="danger" *ngIf="signupForm.get('username')?.hasError(validation.type) && signupForm.get('username')?.touched">
@@ -55,7 +51,6 @@
                   </ion-text>
                 </div>
 
-
                 <ion-input [(ngModel)]="phone" type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number" clearInput></ion-input>
                 <div *ngFor="let validation of validations.phone">
                   <ion-text class="error-message" color="danger" *ngIf="signupForm.get('phone')?.hasError(validation.type) && signupForm.get('phone')?.touched">
@@ -63,7 +58,6 @@
                    <ion-text class="message">{{ validation.message }}</ion-text>
                    </ion-text>
                 </div>
-
 
                 <ion-input  [(ngModel)]="password" type="password" formControlName="password" placeholder="Password" class="input-password"clearInput>
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
@@ -75,7 +69,6 @@
                   </ion-text>
                 </div>
 
-
                 <ion-input type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="input-confirm-password" clearInput>
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
@@ -86,7 +79,6 @@
                   </ion-text>  
                 </div>
               
-
                 <ion-input [(ngModel)]="fullname" type="text" formControlName="fullname" placeholder="Full name" class="input-id-cart" clearInput></ion-input>
                 <div *ngFor="let validation of validations.fullname">
                   <ion-text class="error-message" color="danger" *ngIf="signupForm.get('fullname')?.hasError(validation.type) && signupForm.get('fullname')?.touched">
@@ -94,7 +86,6 @@
                    <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
-                
                 
                 <ion-input [(ngModel)]="address" type="text" formControlName="address" placeholder="Address" class="input-address" clearInput></ion-input>
                 <div *ngFor="let validation of validations.address">
