@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  {
 private apiUrl = "http://localhost:3000"
 private tokenKey = 'authToken';
 private apiUrlMock = "https://666c06cf49dbc5d7145c4413.mockapi.io/api/users/users"
