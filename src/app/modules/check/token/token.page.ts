@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './token.page.html',
   styleUrls: ['./token.page.scss'],
 })
-export class TokenPage implements OnInit {
+export class TokenPage {
   email: any;
   password: any;
   username: any;
@@ -17,8 +17,6 @@ export class TokenPage implements OnInit {
     private authService:AuthService
   ) { }
 
-  ngOnInit() {
-  }
 
   check(){
     this.authService.checkTokenRun()
