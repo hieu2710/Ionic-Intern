@@ -21,7 +21,7 @@ public tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk
 
 
   setToken(): void {
-    document.cookie = `Token=${this.tokenFake}; max-age=300; path=/;`
+    document.cookie = `tokenFake=${this.tokenFake}; max-age=300; path=/;`
   }
 
   getToken(): string | null {

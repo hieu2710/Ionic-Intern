@@ -117,7 +117,7 @@ export class SignInPage implements OnInit {
         if (this.verify) {
           this.isModalOpen = true; 
           setTimeout(() => {
-            this.router.navigate(['home']);
+            this.router.navigate(['/home']);
           }, 2000);
         } else {
           alert(document.cookie);
@@ -131,8 +131,8 @@ export class SignInPage implements OnInit {
     
     this.check();
    this.sucess_login();
-    // this.renderUser();
-    // this.checkUser();
+    this.renderUser();
+    this.checkUser();
   }
 
 
