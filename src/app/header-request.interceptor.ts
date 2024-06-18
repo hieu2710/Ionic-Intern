@@ -14,8 +14,8 @@ export class HeaderInterceptor implements HttpInterceptor {
     private  authservice : AuthService
   ){}
   
- intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const authToken = this.authservice.tokenFake; // use get token instead
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const authToken = this.authservice.getTokenFromCookie(); // Get token from cookie
     if (authToken) {
       // Clone the request and attach the token
       const authReq = request.clone({
