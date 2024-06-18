@@ -11,7 +11,7 @@
         margin-left: 26px;
         margin-bottom: 52px;
         padding-top: 86px;
-        .top {
+        .top, .bottom {
             .txt-top{
                 margin-bottom: 5px;
                 .above{
@@ -26,14 +26,14 @@
                 font-weight:400;
                 text-align: left;
             }
-            .text-if-have-account{
+            .txt-if{
                 margin-bottom: 6px;
             }
-            .text-if-have-account, .text-you-can{
+            .txt-if, .txt-you-can{
                 font-weight: 400;
                 size: 14px;
             }
-            .image-text-footer-sign-up{
+            .img-user-mess{
                 width: 323px;
                 height: 540px;
                 // margin-top: -118px;
@@ -46,9 +46,9 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        .top-form-sign-up{
+        .title{
             margin-bottom: 28px;
-            .sign-up {
+            .txt {
                 margin-top: 30px;
                 font-weight: 500;
                 font-size: 30px;
@@ -77,13 +77,13 @@
                 font-weight: 400;
                 font-size: 18px;
                 --border-radius: 13px;
-                .error-message{
+                .err-mess{
                     display: flex;
                     margin-top: -10px;
                     margin-bottom: 15px;
                     margin-left: 15px;
                     color: red;
-                    .message{
+                    .mess{
                         margin-left: 5px;
                     }
                 }
@@ -101,21 +101,21 @@
                 justify-content: center;
                 text-align: center;
                 margin-top: 48px;
-                .text-footer{
+                .txt-footer{
                     color: #B5B5B5;
                     font-size: 17px;
                     font-weight: bold;
                  }
-                 .footer-button{
+                 .footer-btn{
                     margin-top: 40px;
                     display: flex;
                     justify-content: center;
                     margin-bottom: 70px;
-                    .btnContinue{
+                    .btn-continue{
                         width: 35px;
                         height: 35px;
                     }
-                    .appleButton{
+                    .btn-apple{
                         margin-left: 24px;
                         margin-right: 24px;
                     }
@@ -133,7 +133,7 @@ a{
 }
 
 @media only screen and  (max-width:1440px) {
-    .image-text-footer-sign-up, .top-form-sign-up{
+    .img-user-mess, .top-form-sign-up{
         display: none;
     }
 }
