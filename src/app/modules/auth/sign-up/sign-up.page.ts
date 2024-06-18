@@ -232,7 +232,6 @@ export class SignUpPage implements OnInit {
         message: message,
         buttons: ['Đồng ý'],
       });
-
       loading.dismiss();
       await alert.present();
     } else {
