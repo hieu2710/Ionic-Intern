@@ -1,4 +1,13 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: 'Poppins';
+}
+.row{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
 ion-input.input-email,
 .input-user-name,
 .input-phone-number,
@@ -9,7 +18,6 @@ ion-input.input-email,
 .input-id-cart {
     --background: #f0efff;
     --placeholder-color: #c2bfff;
-    
 
     --padding-bottom: 10px;
     --padding-end: 10px;
@@ -18,48 +26,63 @@ ion-input.input-email,
     margin-bottom: 20px;
 
     width: 370px;
-    height: 60px;
+    height: 65px;
     font-weight: 400;
-    font-size: 15px;
-    --border-radius: 8px;
+    font-size: 18px;
+    --border-radius: 13px;
 
 }
-.error-input{
+.error-message{
+    display: flex;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    margin-left: 15px;
     color: red;
-    font-size: 14px;
-    line-height: 0px;
-    margin-left: 10px;
 }
+.message{
+    margin-left: 5px;
+}
+
+
 .section-text{
-    padding-left: 175px;
-    padding-top: 190px;
+    margin-left: 26px;
+    margin-bottom: 52px;
+    padding-top: 86px;
 }
 
 .text-sign-up-to{
-    font-size: 50px;
+    font-size: 26px;
     font-weight: 600;
+    // line-height: 39px;
+    text-align: left;
 }
+
 .text-lorem{
-    font-size: 35px;
-    font-weight: 500;
-    margin-top: -30px;
+    font-size: 24px;
+    font-weight:400;
+    // line-height: 31.5px;
+    text-align: left;
+    
+}
+.text-if-have-account, .text-you-can{
+    font-weight: 400;
+    size: 14px;
+}
+.text-if-have-account{
+    margin-bottom: 6px;
 }
 .top-form-sign-up{
     margin-bottom: 28px;
 }
-.text-navigate-login-page{
+.text-navigate-login-pagem, a{
     text-decoration: none;
-    color: #605bc9;
-    font-weight: 600;
+    color: #534dc5;
+    font-weight: 800;
+    margin-left: 10px;
 }
+
 .text-top-sign-up{
-    margin-bottom: 53px;
-}
-.text-footer-sign-up{
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 10px;
-    width: 321px;
+    margin-bottom: 32px;
 }
 .image-text-footer-sign-up{
     width: 323px;
@@ -72,41 +95,68 @@ ion-input.input-email,
     font-size: 30px;
 }
 
-.body-form-sign-up{
-    width: 40%;
-}
-
 
 .btn-register {
+
     --background: #4d47c3;
     --ripple-color: deeppink;
-    --border-radius: 8px;
+    --border-radius: 13px ;
     width: 370px;
     height: 60px;
-    margin-top: 8px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    // box-shadow: #4d47c3 0px 10px 36px 0px, #4d47c3 0px 0px 0px 1px;
-}
+    margin-top: 10px;
+    --box-shadow: 0px 0px 35px -4px rgba(77,71,195,255),0px 10px 15px -3px rgba(63, 26, 186, 0.1),0px 10px 15px -3px rgba(63, 26, 186, 0.1),0px 10px 15px -3px rgba(63, 26, 186, 0.1),0px 10px 15px -3px rgba(63, 26, 186, 0.1);
 
+}
+.form-sign-up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.btnContinue{
+    width: 35px;
+    height: 35px;
+    
+}
+.appleButton{
+    margin-left: 24px;
+    margin-right: 24px;
+}
+.footer{
+    justify-content: center;
+    text-align: center;
+    margin-top: 48px;
+}
+.text-footer{
+   color: #B5B5B5;
+   font-size: 17px;
+   font-weight: bold;
+}
+.footer-button{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+}
 @media only screen and  (max-width:1440px) {
-    .image-text-footer-sign-up{
+    .image-text-footer-sign-up, .top-form-sign-up{
         display: none;
     }
 }
 
-@media only screen and  (max-width:909px) {
-    .section-text{
-        padding-left: 100px;
-        padding-top: 80px;
-    }
-}
+// @media only screen and  (max-width:909px) {
+//     .section-text{
+//         padding-left: 100px;
+//         padding-top: 80px;
+//     }
+// }
 
-@media only screen and  (max-width:1687px) {
-    .section-text{
-        padding-left: 100px;
-        padding-top: 80px;
-    }
-    .body-form-sign-up{
-        width: 48%;
-    }
-}
+// @media only screen and  (max-width:1687px) {
+//     .section-text{
+//         padding-left: 100px;
+//         padding-top: 80px;
+//     }
+//     .body-form-sign-up{
+//         width: 48%;
+//     }
+// }

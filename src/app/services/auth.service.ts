@@ -11,7 +11,7 @@ export class AuthService {
 private apiUrl = "http://localhost:3000"
 private tokenKey = 'authToken';
 private apiUrlMock = "https://666c06cf49dbc5d7145c4413.mockapi.io/api/users/users"
-private tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+public tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
   product: any;
 
   constructor(
@@ -19,11 +19,9 @@ private tokenFake = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OD
   ) { 
   }
 
-  ngOnInit() {
-}
 
-  setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  setToken(): void {
+    document.cookie = `Token=${this.tokenFake}; max-age=300; path=/;`
   }
 
   getToken(): string | null {

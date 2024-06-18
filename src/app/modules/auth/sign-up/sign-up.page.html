@@ -1,25 +1,32 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
-      <!-- <ion-col size="2"></ion-col> -->
-      <ion-col>
+    <ion-row class="row">
+      <ion-col size="2"></ion-col>
+
+      <ion-col >
         <div class="section-text">
           <div class="text-top-sign-up">
-            <p class="text-sign-up-to ">Sign Up to </p>
-            <p class="text-lorem">Lorem Ipsum is simply </p>
+            <div style="margin-bottom: 5px;">
+              <ion-text class="text-sign-up-to ">Sign Up to </ion-text>
+            </div>
+            <!-- <br> -->
+            <ion-text class="text-lorem">Lorem Ipsum is simply </ion-text>
           </div>
-          <ion-grid>
-            <ion-row>
-              <div class="text-footer-sign-up">
-                <p>If you already have an account </p>
-                <p>You can <a routerLink="/sign-in"class="text-navigate-login-page"> Login here !</a></p>
-              </div>
-              <img class="image-text-footer-sign-up" src="../../../../assets/user-message.png">
-            </ion-row>
-          </ion-grid>
+               <div style="display: flex;">
+                <div class="text-footer-sign-up">
+                  <ion-text class="text-if-have-account ">If you already have an account register</ion-text>
+                  <br>
+                  <ion-text class="text-you-can ">You can </ion-text>
+                  <ion-text class="text-navigate-login-page">
+                     <a routerLink="/sign-in"> Login here !</a>
+                    </ion-text>
+                </div>
+                <img class="image-text-footer-sign-up" src="../../../../assets/user-message.png">
+               </div>
         </div>
       </ion-col>
-      <ion-col>
+
+      <ion-col  class="form-sign-up" >
         <div>
           <div class="top-form-sign-up">
             <ion-text>
@@ -29,32 +36,31 @@
             </ion-text>
           </div>
           <div class="body-form-sign-up">
-            <form [formGroup]="signupForm" (ngSubmit)="getDataToSignUp()">
+            <form [formGroup]="signupForm">
                 <ion-input [(ngModel)]="email" type="email" formControlName="email" class="input-email" placeholder="Enter Email" clearInput></ion-input>
                 <div *ngFor="let validation of validations.email">
-                  <ion-text class="errorMessage" color="danger" *ngIf="signupForm.get('email')?.hasError(validation.type) && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
-
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('email')?.hasError(validation.type) && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+                      <!-- .hasError === .invalid -->
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                    <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
-                                    <!-- .hasError === .invalid -->
 
-
+                          
                 <ion-input  [(ngModel)]="username" type="text" formControlName="username" placeholder="Create name login" class="input-user-name" clearInput></ion-input>
                 <div *ngFor="let validation of validations.username">
-                  <ion-text color="danger" *ngIf="signupForm.get('username')?.hasError(validation.type) && signupForm.get('username')?.touched">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('username')?.hasError(validation.type) && signupForm.get('username')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                   <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
 
 
                 <ion-input [(ngModel)]="phone" type="tel" formControlName="phone" placeholder="Phone number" class="input-phone-number" clearInput></ion-input>
                 <div *ngFor="let validation of validations.phone">
-                  <ion-text color="danger" *ngIf="signupForm.get('phone')?.hasError(validation.type) && signupForm.get('phone')?.touched">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('phone')?.hasError(validation.type) && signupForm.get('phone')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                   <ion-text class="message">{{ validation.message }}</ion-text>
                    </ion-text>
                 </div>
 
@@ -63,9 +69,9 @@
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
                 <div *ngFor="let validation of validations.password">
-                  <ion-text color="danger" *ngIf="signupForm.get('password')?.hasError(validation.type) && signupForm.get('password')?.touched">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('password')?.hasError(validation.type) && signupForm.get('password')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                   <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
 
@@ -74,36 +80,58 @@
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
                 <div *ngFor="let validation of validations.confirmPassword">
-                  <ion-text color="danger" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.valueChanges">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.valueChanges">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    Mật khẩu confirm sai
+                    <ion-text class="message">Mật khẩu confirm sai</ion-text>
                   </ion-text>  
                 </div>
               
 
                 <ion-input [(ngModel)]="fullname" type="text" formControlName="fullname" placeholder="Full name" class="input-id-cart" clearInput></ion-input>
                 <div *ngFor="let validation of validations.fullname">
-                  <ion-text color="danger" *ngIf="signupForm.get('fullname')?.hasError(validation.type) && signupForm.get('fullname')?.touched">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('fullname')?.hasError(validation.type) && signupForm.get('fullname')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                   <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
                 
                 
                 <ion-input [(ngModel)]="address" type="text" formControlName="address" placeholder="Address" class="input-address" clearInput></ion-input>
                 <div *ngFor="let validation of validations.address">
-                  <ion-text color="danger" *ngIf="signupForm.get('address')?.hasError(validation.type) && signupForm.get('address')?.touched">
+                  <ion-text class="error-message" color="danger" *ngIf="signupForm.get('address')?.hasError(validation.type) && signupForm.get('address')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
-                    {{ validation.message }}
+                   <ion-text class="message">{{ validation.message }}</ion-text>
                   </ion-text>
                 </div>
 
-                <ion-button  [routerLink]="['/home']" [disabled]="signupForm.invalid" type="submit" class="btn-register" >Register</ion-button>
+                <ion-button  (click)="btnRegister()" [disabled]="signupForm.invalid" type="submit" class="btn-register" >Register</ion-button>
+                <br>
 
+                <div class="footer">
+                  <ion-text class="text-footer">or continue with</ion-text>
+                  <div class="footer-button">
+                    <ion-buttons class="btnContinue">
+                      <ion-img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/2048px-2023_Facebook_icon.svg.png"
+                        alt="facebook"></ion-img>
+                    </ion-buttons>
+
+                    <ion-buttons class="btnContinue appleButton">
+                      <ion-img src="https://e7.pngegg.com/pngimages/180/164/png-clipart-apple-logo-apple-logo-thumbnail.png"
+                        alt="apple"></ion-img>
+                    </ion-buttons>
+
+                    <ion-buttons class="btnContinue">
+                      <ion-img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                        alt="google"></ion-img>
+                    </ion-buttons>
+                  </div>
+                </div>
             </form>
           </div>
         </div>
       </ion-col>
+      <!-- <ion-col size="2"></ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>

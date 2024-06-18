@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/user';
 import { LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,6 +20,7 @@ export class SignInPage implements OnInit {
   public usersData: any;
   match_user: User | undefined;
   verify = false;
+  
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
@@ -28,7 +30,8 @@ export class SignInPage implements OnInit {
     private formBuilder: FormBuilder,
     private loadingController: LoadingController ,
     private userService: UserService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private router: Router,
   ) {
     this.slideOneForm = this.formBuilder.group({
       username: [
@@ -43,7 +46,7 @@ export class SignInPage implements OnInit {
     });
   }
 
- // Select user in api 
+//  Select user in api 
   renderUser() {
     var current_username = (
       document.getElementById('username') as HTMLInputElement
@@ -52,7 +55,7 @@ export class SignInPage implements OnInit {
       (res: User[]) => {
         this.usersData = res;
         this.match_user = this.usersData.find(
-          (user: any) => user.name === current_username,
+          (user: any) => user.username === current_username,
           console.log(this.match_user)
         );
       },
@@ -67,18 +70,11 @@ export class SignInPage implements OnInit {
     setTimeout(() => {
       const current_password = (document.getElementById('password') as HTMLInputElement).value;
       if (this.match_user) {
-        if (this.match_user.pass === current_password) {
+        if (this.match_user.password === current_password) {
           this.verify = true;
           console.log(this.verify, 'correct');
-          
-          const token = 'FeInTeRnReLaTiOnShOp2024';
-          this.AuthService.setToken(token);
-          const retrievedToken = this.AuthService.getToken();
-          if (retrievedToken === token) {
-            console.log('Token successfully set and retrieved:', retrievedToken);
-          } else {
-            console.log('Failed to retrieve the correct token');
-          }
+          this.AuthService.setToken();
+
         } else {
           console.log('Wrong password');
         }
@@ -97,9 +93,9 @@ export class SignInPage implements OnInit {
     //   }
   }
   //check button click without fill
-  getTest(){
-    console.log(this.userService.ReadUsers())
-  }
+  // getTest(){
+  //   console.log(this.userService.ReadUsers())
+  // }
   async check() {
     if (!this.slideOneForm.valid) {
       this.submitAttempt = true;
@@ -119,12 +115,12 @@ export class SignInPage implements OnInit {
     setTimeout(() => {
       if (!this.submitAttempt) {
         if (this.verify) {
-          this.isModalOpen = true;
+          this.isModalOpen = true; 
           setTimeout(() => {
-            window.location.assign('./home');
+            this.router.navigate(['home']);
           }, 2000);
         } else {
-          alert(this.verify);
+          alert(document.cookie);
         }
       }
     }, 2500);
@@ -135,8 +131,8 @@ export class SignInPage implements OnInit {
     
     this.check();
    this.sucess_login();
-    this.renderUser();
-    this.checkUser();
+    // this.renderUser();
+    // this.checkUser();
   }
 
 

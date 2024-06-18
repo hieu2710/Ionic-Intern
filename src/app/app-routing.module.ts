@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './services/AuthGuard.service';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard],
-  },
-  { path: '**', 
-    redirectTo: 'sign-in' 
+    canActivate: [],
   },
   {
     path: '',
-<<<<<<< HEAD
     redirectTo: 'sign-in',
-=======
-    redirectTo: 'sign-up',
->>>>>>> 3b576764 (feat(Register): Add feature to save login after registering)
     pathMatch: 'full'
   },
     {
@@ -28,10 +20,6 @@ const routes: Routes = [
     path: 'sign-in',
     loadChildren: () => import('./modules/auth/sign-in/sign-in.module').then( m => m.SignInPageModule)
 
-  },
-  {
-    path: 'token',
-    loadChildren: () => import('./modules/check/token/token.module').then( m => m.TokenPageModule)
   },
 ];
 
