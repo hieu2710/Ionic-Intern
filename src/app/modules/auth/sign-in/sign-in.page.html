@@ -25,6 +25,7 @@
           <form [formGroup]="slideOneForm">
             <ion-input
               label="Username"
+              id="username" 
               label-placement="floating"
               fill="outline"
               placeholder="Enter your Username"
@@ -35,6 +36,7 @@
             </ion-item>
             <ion-input
               fill="outline"
+              id="password"
               type="password"
               placeholder="Input your password"
               formControlName="pass"
@@ -48,7 +50,7 @@
               Please fill out all details accurately.
             </p>
             <a href="" class="forgot">Forgot password!</a> <br />
-            <button (click)="login()">Login</button>
+            <button id="open-loading" (click)="login()">Login</button>
             
           </form>
         </div>
@@ -85,4 +87,8 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+  <!-- <button (click)="getTest()">CLick</button> -->
+
+<!-- <ion-loading trigger="open-loading" message="Checking..." duration="5000"></ion-loading> -->
+
 </ion-content>

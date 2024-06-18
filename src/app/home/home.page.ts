@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service'
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  isAuthenticated: boolean = false;
 
-  constructor() {}
+  constructor(
+    private router:Router,) {
 
+  }
+
+
+  logout(){
+    document.cookie = `tokenFake=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    this.router.navigate(['/sign-in'])
+  }
 }
