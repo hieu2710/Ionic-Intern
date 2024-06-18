@@ -8,9 +8,9 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard],
   },
-  { path: '**', 
-    redirectTo: 'sign-in' 
-  },
+  // { path: '**', 
+  //   redirectTo: 'sign-in' 
+  // },
   {
     path: '',
     redirectTo: 'sign-in',
@@ -24,10 +24,6 @@ const routes: Routes = [
     path: 'sign-in',
     loadChildren: () => import('./modules/auth/sign-in/sign-in.module').then( m => m.SignInPageModule)
 
-  },
-  {
-    path: 'token',
-    loadChildren: () => import('./modules/check/token/token.module').then( m => m.TokenPageModule)
   },
 ];
 

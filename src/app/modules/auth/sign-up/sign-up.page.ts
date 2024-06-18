@@ -72,7 +72,8 @@ export class SignUpPage implements OnInit {
         Validators.pattern('^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$')
       ])],
       confirmPassword: ['', Validators.required],
-      // fullname: ['', [Validators.required]],
+      fullname: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
       address: ['', Validators.required]
     }, { 
       validator: this.passwordMatchValidator
