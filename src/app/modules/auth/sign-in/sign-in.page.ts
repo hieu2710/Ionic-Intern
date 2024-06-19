@@ -1,6 +1,4 @@
-import { SelectorMatcher, Type } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/user';
@@ -20,18 +18,14 @@ export class SignInPage implements OnInit {
   public usersData: any;
   match_user: User | undefined;
   verify = false;
-  
-
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {
-    
-  }
+// eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+  ngOnInit() {}
   constructor(
     private formBuilder: FormBuilder,
-    private loadingController: LoadingController ,
+    private loadingController: LoadingController,
     private userService: UserService,
     private AuthService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
     this.slideOneForm = this.formBuilder.group({
       username: [
@@ -45,8 +39,20 @@ export class SignInPage implements OnInit {
       pass: ['', Validators.required],
     });
   }
-
-//  Select user in api 
+//check button click without fill
+  async check() {
+    if (!this.slideOneForm.valid) {
+      this.submitAttempt = true;
+    } else {
+      this.submitAttempt = false;
+      const loading = await this.loadingController.create({
+        message: 'Checking...',
+        duration: 2500,
+      });
+      await loading.present();
+    }
+  }
+//  Select user in api
   renderUser() {
     var current_username = (
       document.getElementById('username') as HTMLInputElement
@@ -56,7 +62,7 @@ export class SignInPage implements OnInit {
         this.usersData = res;
         this.match_user = this.usersData.find(
           (user: any) => user.username === current_username,
-          console.log(this.match_user)
+          console.log(this.match_user) //
         );
       },
       (error: any) => {
@@ -64,17 +70,18 @@ export class SignInPage implements OnInit {
       }
     );
   }
-
-//  check pwd of user, timeout for fetch time 
+//  check pwd of user, timeout for fetch time
   checkUser() {
     setTimeout(() => {
-      const current_password = (document.getElementById('password') as HTMLInputElement).value;
+      const current_password = (
+        document.getElementById('password') as HTMLInputElement
+      ).value;
       if (this.match_user) {
         if (this.match_user.password === current_password) {
           this.verify = true;
           console.log(this.verify, 'correct');
-          this.AuthService.setToken();
-
+          var token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+          this.AuthService.setToken(token);
         } else {
           console.log('Wrong password');
         }
@@ -82,42 +89,15 @@ export class SignInPage implements OnInit {
         console.log('User not found');
       }
     }, 2000);
-    // const user = (document.getElementById('username') as HTMLInputElement).value
-    // if(this.userService.login(user))
-    //   {
-    //     console.log("true");
-    //   }
-    //   else
-    //   {
-    //     console.log("false")
-    //   }
   }
-  //check button click without fill
-  // getTest(){
-  //   console.log(this.userService.ReadUsers())
-  // }
-  async check() {
-    if (!this.slideOneForm.valid) {
-      this.submitAttempt = true;
-    } else {
-      this.submitAttempt = false;
-      const loading = await this.loadingController.create({
-        message: 'Checking...',
-        duration: 2500
-      });
-      await loading.present();
-      
-    }
-  }
-
-  //noti login success
+ //noti login success
   sucess_login() {
     setTimeout(() => {
       if (!this.submitAttempt) {
         if (this.verify) {
-          this.isModalOpen = true; 
+          this.isModalOpen = true;
           setTimeout(() => {
-            this.router.navigate(['/home']);
+            window.location.assign('home');
           }, 2000);
         } else {
           alert(document.cookie);
@@ -125,17 +105,16 @@ export class SignInPage implements OnInit {
       }
     }, 2500);
   }
-
-  
+//login
   async login() {
-    
-    this.check();
-   this.sucess_login();
-    this.renderUser();
-    this.checkUser();
+    await this.check();
+    if (!this.submitAttempt) {
+      this.sucess_login();
+      this.renderUser();
+      this.checkUser();
+    } else {
+      console.log('Form is not valid');
+    }
   }
-
-
-
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
 }

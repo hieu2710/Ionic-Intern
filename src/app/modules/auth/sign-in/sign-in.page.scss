@@ -1,74 +1,76 @@
+//variables
+$primary-color: #4D47C3;
+$background-color: #F0EFFF;
+$font-family: 'Poppins';
+$text-color: #000000;
+$text-secondary-color: #B5B5B5;
+$button-text-color: #FFFFFF;
+
+@mixin font($size, $line-height, $weight: normal) {
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+}
 h1 {
   width: 231px;
   height: 75px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 50px;
-  line-height: 75px;
-  color: #000000;
+  @include font(50px, 75px, 600);
+  color: $text-color;
 }
+
 h2 {
   width: 396px;
   height: 53px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 35px;
-  line-height: 52px;
-  /* identical to box height */
+  @include font(35px, 52px, 500);
+  color: $text-color;
+}
 
-  color: #000000;
+.title {
+  margin-top: 135px;
+  
+  a {
+    text-decoration: none;
+    color: $primary-color;
+    font-weight: bold;
+  }
 }
-.title{
-margin-top: 135px;
-}
-img {
-margin-left: 300px;
-margin-top: -150px;
+
+.img_signin {
+  margin-left: 300px;
+  margin-top: -150px;
   width: 313px;
   height: 556px;
 }
-.password_in{
-left: 0%;
-right: 0%;
-top: 0%;
-bottom: 0%;
 
-background: #F0EFFF;
-border-radius: 8px;
+.password_in {
+  background: $background-color;
+  border-radius: 8px;
+}
 
-}
-.title a{
-  text-decoration: none;
-  color: #4D47C3;
-  font-weight: bold;
-}
-button{
-width: 369px;
-height: 59px;
-background: #4D47C3;
-box-shadow: 0px 4px 61px rgba(77, 71, 195, 0.4);
-border-radius: 9px;
-margin-top: 30px ;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-color: #FFFFFF;
+button {
+  width: 369px;
+  height: 59px;
+  background: $primary-color;
+  box-shadow: 0px 4px 61px rgba(77, 71, 195, 0.4);
+  border-radius: 9px;
+  margin-top: 30px;
+  @include font(16px, 24px, 500);
+  color: $button-text-color;
 }
 ion-input {
-width: 369px;
-height: 62px;
-background-color:#F0EFFF ;
-color: #A7A3FF;
-border-radius: 8px;
-margin-top: 40px ;
-padding-left: 10px;
-}
-.sc-ion-input-md-h{
-  --border-width: none;
+  width: 369px;
+  height: 62px;
+  background-color: $background-color;
+  color: #A7A3FF;
+  border-radius: 8px;
+  margin-top: 40px;
+  padding-left: 10px;
+
+  &::part(native) {
+    border-width: none;
+  }
 }
 .forgot {
   margin-top: 30px;
@@ -76,57 +78,58 @@ padding-left: 10px;
   color: grey;
   float: right;
 }
-.input{
+
+.input,
+.difflog {
   width: 369px;
 }
-.difflog{
-  width: 369px;
-}
-.difflog p{
-margin-top: 50px;
-text-align: center;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-color: #B5B5B5;
-}
-.btn-google, .btn-git, .btn-fb{
---border-radius: 50px;
-}
 
-.image-gg, .image-fb, .image-git{
-width: 30px;
-height: 30px;
-}
-.icon{
-margin-left: 80px;
-}
+.difflog {
+  p {
+    margin-top: 50px;
+    text-align: center;
+    @include font(16px, 24px, 500);
+    color: $text-secondary-color;
+  }
 
+  .icon {
+    margin-left: 80px;
+
+    ion-button {
+      --border-radius: 50px;
+
+      ion-img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
 ion-modal {
   --height: 50%;
   --border-radius: 16px;
-  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  &::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+
+  ion-toolbar {
+    --background: rgb(14, 116, 144);
+    --color: white;
+  }
+
+  ion-item img {
+    width: 50%;
+    height: 80%;
+    margin-left: 130px;
+    margin-top: 60px;
+  }
 }
 
-ion-modal::part(backdrop) {
-  background: rgba(209, 213, 219);
-  opacity: 1;
-}
-
-ion-modal ion-toolbar {
-  --background: rgb(14 116 144);
-  --color: white;
-}
-ion-item img {
-  width: 50%;
-  height: 80%;
-  margin-left: 130px;
-  margin-top: 60px;
-}
-@media only screen and  (max-width:1080px) {
-  .img_signin{
-      display: none;
+@media only screen and (max-width: 1080px) {
+  .img_signin {
+    display: none;
   }
 }
