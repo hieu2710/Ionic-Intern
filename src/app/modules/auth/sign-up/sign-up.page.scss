@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     .title-sign-up {
-        margin-left: 26px;
+        margin-left: 11px;
         margin-bottom: 52px;
         padding-top: 86px;
         .top, .bottom {
@@ -36,7 +36,7 @@
             .img-user-mess{
                 width: 323px;
                 height: 540px;
-                // margin-top: -118px;
+                margin-left: 40%;
             }
         }
     }
@@ -77,15 +77,16 @@
                 font-weight: 400;
                 font-size: 18px;
                 --border-radius: 13px;
-                .err-mess{
-                    display: flex;
-                    margin-top: -10px;
-                    margin-bottom: 15px;
-                    margin-left: 15px;
-                    color: red;
-                    .mess{
-                        margin-left: 5px;
-                    }
+
+            }
+            .err-mess{
+                display: flex;
+                margin-top: -10px;
+                margin-bottom: 15px;
+                margin-left: 15px;
+                color: red;
+                .mess{
+                    margin-left: 5px;
                 }
             }
             .btn-register {
@@ -125,6 +126,10 @@
     }
 }
 
+
+
+
+
 a{
     text-decoration: none;
     color: #534dc5;
@@ -133,7 +138,7 @@ a{
 }
 
 @media only screen and  (max-width:1440px) {
-    .img-user-mess, .top-form-sign-up{
+    .img-user-mess, .txt{
         display: none;
     }
 }

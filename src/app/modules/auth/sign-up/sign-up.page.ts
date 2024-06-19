@@ -93,7 +93,6 @@ export class SignUpPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.checkEmailExist);
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -122,7 +121,7 @@ export class SignUpPage implements OnInit {
     this.userService.postUsers(getInforUser).subscribe(
       (res: any) => {
         loading.dismiss();
-        this.router.navigate(['home']);
+        this.router.navigate(['/home']);
         console.log('success', res);
       },
       (err: any) => {
