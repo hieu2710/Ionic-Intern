@@ -73,7 +73,7 @@
                   <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
                 <div *ngFor="let validation of validations.confirmPassword">
-                  <ion-text class="err-mess" color="danger" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.valueChanges">
+                  <ion-text class="err-mess" color="danger" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched">
                     <ion-icon name="information-circle-outline"></ion-icon>
                     <ion-text class="mess">Mật khẩu confirm sai</ion-text>
                   </ion-text>  
