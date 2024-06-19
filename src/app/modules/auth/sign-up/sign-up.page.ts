@@ -36,26 +36,30 @@ export class SignUpPage implements OnInit {
   ) {
     this.validations = {
       email: [
-        { type: 'required', message: 'Email is required' },
+        { type: 'required', message: 'Email là bắt buộc' },
         { type: 'email', message: 'Email chưa đúng định dạng' },
       ],
       username: [
-        { type: 'required', message: 'Username is required' },
+        { type: 'required', message: 'Username là bắt buộc' },
         { type: 'minlength', message: 'Tên người dùng ít nhất 7 ký tự' },
       ],
       phone: [
-        { type: 'required', message: 'Phone is required.' },
-        { type: 'pattern(/^d{10}$/)', message: 'Số điện thoại phải đủ 10 số' },
+        { type: 'required', message: 'Phone là bắt buộc' },
+        { type: 'minlength', message: 'Số điện thoại phải đủ 10 số' },
       ],
       password: [
-        { type: 'required', message: 'Password is required.' },
+        { type: 'required', message: 'Password là bắt buộc' },
         {
           type: 'minlength',
-          message: 'Username must be at least 10 characters long.',
+          message: 'Password ít nhất 10 ký tự',
+        },
+        {
+          type: 'maxlength',
+          message: 'Password nhiều nhất 20 ký tự',
         },
         {
           type: 'pattern',
-          message: 'Your password must contain only numbers and letters.',
+          message: 'Mật khẩu phải chứa ít nhất 1 chữ thường, chữ in, số và ký tự (@$!%*?&)',
         },
       ],
       confirmPassword: [
@@ -63,7 +67,6 @@ export class SignUpPage implements OnInit {
       ],
       fullname: [
         { type: 'required', message: 'Bắt buộc nhập' },
-        { type: 'minLength', message: 'ID Card phải đủ 12 số' },
       ],
       address: [{ type: 'required', message: 'Bắt buộc nhập' }],
     };
@@ -75,6 +78,7 @@ export class SignUpPage implements OnInit {
           '',
           Validators.compose([
             Validators.minLength(10),
+            Validators.maxLength(20),
             Validators.required,
             Validators.pattern(
               '^(?=.*?[A-Z])(?=.*[@$!%*?&])(?=.*?[a-z])(?=.*?[0-9]).{10,20}$'
@@ -83,7 +87,7 @@ export class SignUpPage implements OnInit {
         ],
         confirmPassword: ['', Validators.required],
         fullname: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
+        phone: ['', [Validators.required, Validators.minLength(10)]],
         address: ['', Validators.required],
       },
       {
